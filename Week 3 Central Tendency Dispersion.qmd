@@ -1,0 +1,129 @@
+---
+title: "Week 3"
+author: "stantis"
+format: html
+editor: visual
+---
+
+## Setup
+
+\[\] **Task** Import the inequ_data.csv in whatever way you want to (clicking buttons or writing some code). Name it 'df' so later code works down below, or alter the code to match whatever you named the dataframe.
+
+Then, run the code below, which cleans up the data a bit for us to look at. (Hint, you may need to run `install.packages(dplyr)` on your system.
+
+```{r}
+#| label: setup packages; clean dataframe a bit
+#| echo: false
+
+library(dplyr)
+
+df_clean <- 
+df %>% 
+  select(Gini,
+         Site,
+         World,
+         Adaptation,
+         PolJE,
+         Date_AD,
+         LocalNeo) %>% 
+  mutate(delta_years = Date_AD - LocalNeo)
+```
+
+Hint: later in the semester, we'll talk more about this code above. For now, look at it. what changed between df and df_clean? Make a mental note of what you think things like `select()`, `mutate()`, and `%>%` do in this code.
+
+-   [ ] **Task** Begin your report, below, with the same kind of introductory information we had in our last report. You wouldn't normally include three+ bits of variables in the beginning of a report, but let's do it again as an exercise in identifying data types. For some of the traits, you may need to check your lecture notes on them.
+
+AUTHOR NAMES recorded sites (n = \_\_\_\_\_\_) from WHERE. They recorded traits like TRAIT 1, TRAIT 2, TRAIT 3.
+
+HINT: you can look at the environment tab on the top-right of RStudio to see the dataframe is 63 observations. You can also run this bit of code like `nrow(df_clean)`. Sometimes I run that in my Console (lower-left) just to check things.
+
+-   [ ] **Task** After writing that into your report, create a new subheading (a heading 3) in your report. You can do this by starting the line with three hashtags. Label this heading 'Traits'
+
+-   [ ] **Task** In subheading 'Traits', write at least one sentence about each of the three traits you've chosen. Note the name of the trait, the type of data (of the four types), units (if applicable). In actual reports, you'd rarely note the type of data it is, but let's do it to practice.
+
+## Measures of Central Tendency
+
+Now, let's generate some means and medians of the data, subset by different areas of interest. We'll do this a couple ways using base R (i.e., no packages). Later in the semester, I want to show you some packages that make this easier.
+
+### Subsetting
+
+Let's say you really only wanted to check out one group at a time. You can use `subset` to do that.
+
+```{r}
+#| label: subset example
+OW <- subset(df_clean, World == 'OW')
+
+```
+
+Now, you can get the mean GINI of Old World sites. Put `mean(OW$Gini)` in the code chunk above and re-run. The mean should appear in the console below. Create a new code chunk (Hint, go to the Source view for an easier time copy-pasting the above code chunk), that generates a new dataframe called 'NW' that subsets all sites from the Americas.
+
+### Aggregating by groups
+
+Maybe we know we're wanting to collect data by all groups. I use a package to help me with this, but you can use base R like so:
+
+```{r}
+#| label: subset example
+aggregate(df$Gini, list(df$World), FUN = mean) 
+```
+
+See how it generated mean for both groups? Change the function (FUN) to median to get the other info we need re: central tendencies.
+
+## Measures of Dispersion
+
+-   **Task** Using whatever means of coding you prefer, create code chunks that do the following:
+
+    -   Determine the standard deviation of GINI index, by variable 'World'
+
+    -   Determine the IQR of GINI index, by variable 'World'
+
+    -   Hint: calculating these are similar to calculating mean and median, though one of these functions is a little quirky. Try searching something like 'calculate sd using R' and 'calculate iqr using R' if you hit a roadblock.
+
+## Again
+
+-   **Task** Copy whatever code you liked using to calculate mean, median, SD, and IQR above, and do it all again...but for Adaptation (ask yourself, what is the Adaptation column telling us about each site?)
+
+## Visualizing
+
+Let's make some boxplots to view the data by groups. Run the code below to see GINI by broad area.
+
+```{r}
+#| label: boxplot example
+boxplot(df_clean$Gini ~ df_clean$World) 
+```
+
+-   **Task** Make another boxplot, for adaptation.
+-   **Task** Make a scatterplot, with GINI on the Y-axis and delta-years on the x axis (Hint: there's some code in Week 2 you can re-use for this)
+
+## Putting it all together
+
+-   [ ] In your report section, let's have a table for mean +- 1SD, median +-1IQR for each set of variables. Fill in the columns with your info. I've created the basic structure in the Report section
+
+### Anthropological inference:
+
+-   [ ] With the tabulated and graphed data, write *what* you see, and then what you think it means. Create a 2nd level heading like 'Conclusions', or 'Inferences'. Answer the following questions:
+
+    -   [ ] What patterns are there between the 'Old World' and 'New World'?
+
+    -   [ ] What about between adaptation types?
+
+    -   [ ] Are there any patterns over time?
+
+    -   [ ] What might all of this imply about inequality?
+
+-   [ ] Cite the paper as the data source as the last part of the report. Write something like 'Data source:' and then the paper, Chicago style. The paper can be found [here](https://www.academia.edu/55757686/Greater_post_Neolithic_wealth_disparities_in_Eurasia_than_in_North_America_and_Mesoamerica_Kohler_et_al_2017_).
+
+-   [ ] Final task: rename the title and author of this quarto document (reminder, it's up top)
+
+## Report Goes Here
+
+<!--# Remember to check for basic clarity and punctuation in the report -->
+
+|                   | Mean +- 1SD | Median +- 1IQR |
+|-------------------|-------------|----------------|
+| *Broad Area*      |             |                |
+| New World         |             |                |
+| Old World         |             |                |
+| *Adaptation*      |             |                |
+| Hunting-Gathering |             |                |
+| Horticulture      |             |                |
+| Agriculture       |             |                |
