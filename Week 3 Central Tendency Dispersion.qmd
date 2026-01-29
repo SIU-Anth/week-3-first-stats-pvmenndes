@@ -7,7 +7,7 @@ editor: visual
 
 ## Setup
 
-\[\] **Task** Import the inequ_data.csv in whatever way you want to (clicking buttons or writing some code). Name it 'df' so later code works down below, or alter the code to match whatever you named the dataframe.
+\[x\] **Task** Import the inequ_data.csv in whatever way you want to (clicking buttons or writing some code). Name it 'df' so later code works down below, or alter the code to match whatever you named the dataframe.
 
 Then, run the code below, which cleans up the data a bit for us to look at. (Hint, you may need to run `install.packages(dplyr)` on your system.
 
