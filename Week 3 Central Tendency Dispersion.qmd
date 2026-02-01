@@ -1,6 +1,6 @@
 ---
-title: "Week 3"
-author: "stantis"
+title: Week 3 report
+author: Paulo Vitor Mendes
 format: html
 editor: visual
 ---
@@ -37,9 +37,9 @@ AUTHOR NAMES recorded sites (n = \_\_\_\_\_\_) from WHERE. They recorded traits 
 
 HINT: you can look at the environment tab on the top-right of RStudio to see the dataframe is 63 observations. You can also run this bit of code like `nrow(df_clean)`. Sometimes I run that in my Console (lower-left) just to check things.
 
--   [ ] **Task** After writing that into your report, create a new subheading (a heading 3) in your report. You can do this by starting the line with three hashtags. Label this heading 'Traits'
+-   [x] **Task** After writing that into your report, create a new subheading (a heading 3) in your report. You can do this by starting the line with three hashtags. Label this heading 'Traits'
 
--   [ ] **Task** In subheading 'Traits', write at least one sentence about each of the three traits you've chosen. Note the name of the trait, the type of data (of the four types), units (if applicable). In actual reports, you'd rarely note the type of data it is, but let's do it to practice.
+-   [x] **Task** In subheading 'Traits', write at least one sentence about each of the three traits you've chosen. Note the name of the trait, the type of data (of the four types), units (if applicable). In actual reports, you'd rarely note the type of data it is, but let's do it to practice.
 
 ## Measures of Central Tendency
 
@@ -51,8 +51,7 @@ Let's say you really only wanted to check out one group at a time. You can use `
 
 ```{r}
 #| label: subset example
-OW <- subset(df_clean, World == 'OW')
-
+OW <- subset(df_clean, World
 ```
 
 Now, you can get the mean GINI of Old World sites. Put `mean(OW$Gini)` in the code chunk above and re-run. The mean should appear in the console below. Create a new code chunk (Hint, go to the Source view for an easier time copy-pasting the above code chunk), that generates a new dataframe called 'NW' that subsets all sites from the Americas.
@@ -80,7 +79,9 @@ See how it generated mean for both groups? Change the function (FUN) to median t
 
 ## Again
 
--   **Task** Copy whatever code you liked using to calculate mean, median, SD, and IQR above, and do it all again...but for Adaptation (ask yourself, what is the Adaptation column telling us about each site?)
+-   **Task** Copy whatever code you liked using to calculate mean, median, SD, and IQR above, and do it all again...but for Adaptation (ask yourself, what is the Adaptation column telling us about each site?) \
+    \
+    It indicates the primary mode of subsistence and is used to test whether the advent of agriculture and so-called more complex societies also came at the cost of greater inequality.
 
 ## Visualizing
 
@@ -96,34 +97,70 @@ boxplot(df_clean$Gini ~ df_clean$World)
 
 ## Putting it all together
 
--   [ ] In your report section, let's have a table for mean +- 1SD, median +-1IQR for each set of variables. Fill in the columns with your info. I've created the basic structure in the Report section
+-   [x] In your report section, let's have a table for mean +- 1SD, median +-1IQR for each set of variables. Fill in the columns with your info. I've created the basic structure in the Report section
 
 ### Anthropological inference:
 
 -   [ ] With the tabulated and graphed data, write *what* you see, and then what you think it means. Create a 2nd level heading like 'Conclusions', or 'Inferences'. Answer the following questions:
 
-    -   [ ] What patterns are there between the 'Old World' and 'New World'?
+    -   [x] What patterns are there between the 'Old World' and 'New World'?
 
-    -   [ ] What about between adaptation types?
+    -   [x] What about between adaptation types?
 
-    -   [ ] Are there any patterns over time?
+    -   [x] Are there any patterns over time?
 
-    -   [ ] What might all of this imply about inequality?
+    -   [x] What might all of this imply about inequality?
 
--   [ ] Cite the paper as the data source as the last part of the report. Write something like 'Data source:' and then the paper, Chicago style. The paper can be found [here](https://www.academia.edu/55757686/Greater_post_Neolithic_wealth_disparities_in_Eurasia_than_in_North_America_and_Mesoamerica_Kohler_et_al_2017_).
+-   [x] Cite the paper as the data source as the last part of the report. Write something like 'Data source:' and then the paper, Chicago style. The paper can be found [here](https://www.academia.edu/55757686/Greater_post_Neolithic_wealth_disparities_in_Eurasia_than_in_North_America_and_Mesoamerica_Kohler_et_al_2017_).
 
--   [ ] Final task: rename the title and author of this quarto document (reminder, it's up top)
+-   [x] Final task: rename the title and author of this quarto document (reminder, it's up top)
 
 ## Report Goes Here
 
-<!--# Remember to check for basic clarity and punctuation in the report -->
+###Report
 
-|                   | Mean +- 1SD | Median +- 1IQR |
-|-------------------|-------------|----------------|
-| *Broad Area*      |             |                |
-| New World         |             |                |
-| Old World         |             |                |
-| *Adaptation*      |             |                |
-| Hunting-Gathering |             |                |
-| Horticulture      |             |                |
-| Agriculture       |             |                |
+Kohler et al. compiled data from 63 archaeological sites (n = 63) across the planet, recording variables such as chronological period, Gini coefficient, and world region.
+
+###Traits
+
+Site is a nominal variable that identifies the archeological location from which the data was collected from.
+
+Gini coefficient is a continuous variable that measures the degree of inequality within a population. Higher values indicate greater inequality, while lower values suggest a more equal distribution of resources.
+
+World Region is a Nominal variable that classifies each site according to its broad geographic location. In this article the categories chosen for the variable and old and new world.
+
+|                   | Mean +- 1SD  | Median +- 1IQR |
+|-------------------|--------------|----------------|
+| *Broad Area*      |              |                |
+| New World         | 0.28 +- 0.11 | 0.26 +- 0.13   |
+| Old World         | 0.34 +-0.14  | 0.35 +- 0.20   |
+| *Adaptation*      |              |                |
+| Hunting-Gathering | 0.17 +- 0.02 | 0.17 +- 0.02   |
+| Horticulture      | 0.25 +- 0.08 | 0.26 +- 0.12   |
+| Agriculture       | 0.32 +- 0.02 | 0.35 +- 0.15   |
+
+###Conclusion: \
+\
+What patterns are there between the 'Old World' and 'New World'?
+
+“Old World” societies tend to have higher Gini coefficients than New World societies. The “Old World” also shows higher values of standard deviation and interquartile range, which indicates that these societies not only have greater inequality overall, but also that the degree of inequality varies more widely between societies.
+
+What about between adaptation types?
+
+Adaptation type also presents clear patterns. Hunter-gatherer societies have the lowest Gini coefficients and the least variation, which indicates more egalitarian societies. Horticultural societies fall in the middle, presenting higher levels of inequality when compared to hunter-gatherers. Agricultural societies present the highest values in both datasets, indicating greater inequality among all societies.
+
+Are there any patterns over time?
+
+Based on visual inspection of the scatterplot of the Gini coefficient versus time, I see no clear correlation between the two variables.
+
+What might all of this imply about inequality?
+
+My interpretation of the data is that inequality does not seem to be related to time, but rather to subsistence strategies.
+
+From an anthropological perspective on how each society works, hunter-gatherer groups are usually small bands in which all people need to focus on activities related to subsistence. They often move seasonally as well. As a consequence, they tend to have lower accumulation of material goods, which would be directly reflected in the Gini coefficient. The fact that these groups are small also means that less structured hierarchies are necessary for decision-making.
+
+Horticulture could potentially increase carrying capacity, leading to larger groups that would require hierarchical levels to better organize decision-making. Furthermore, once people become tied to specific land due to cultivation, accumulation becomes easier and inequality tends to form. Agriculture would intensify this process. The surplus of food would mean greater concentration of resources, larger groups, and the fact that not everyone needs to work in food production, creating different groups, tasks, and divisions within society, which once again would contribute to stronger hierarchical stratification and a greater presence of inequality.
+
+###Data source
+
+KOHLER, Timothy A. et al. Greater post-Neolithic wealth disparities in Eurasia than in North America and Mesoamerica. Nature, v. 551, n. 7682, p. 619-622, 2017.
